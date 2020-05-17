@@ -66,13 +66,13 @@ const ProductForm = ({ product }) => {
     addVariantToCart(productVariant.shopifyId, quantity)
   }
 
-  /* 
-  Using this in conjunction with a select input for variants 
-  can cause a bug where the buy button is disabled, this 
+  /*
+  Using this in conjunction with a select input for variants
+  can cause a bug where the buy button is disabled, this
   happens when only one variant is available and it's not the
-  first one in the dropdown list. I didn't feel like putting 
+  first one in the dropdown list. I didn't feel like putting
   in time to fix this since its an edge case and most people
-  wouldn't want to use dropdown styled selector anyways - 
+  wouldn't want to use dropdown styled selector anyways -
   at least if the have a sense for good design lol.
   */
   const checkDisabled = (name, value) => {
@@ -98,7 +98,7 @@ const ProductForm = ({ product }) => {
   return (
     <>
       <h3>{price}</h3>
-      {options.map(({ id, name, values }, index) => (
+      {/* {options.map(({ id, name, values }, index) => (
         <React.Fragment key={id}>
           <label htmlFor={name}>{name} </label>
           <select
@@ -118,7 +118,7 @@ const ProductForm = ({ product }) => {
           </select>
           <br />
         </React.Fragment>
-      ))}
+      ))} */}
       <label htmlFor="quantity">Quantity </label>
       <input
         type="number"
