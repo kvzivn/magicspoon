@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import StoreContext from '~/context/StoreContext'
 
-const ProductForm = ({ product }) => {
+const ProductForm = ({ product, color, setColor }) => {
   const {
     options,
     variants,
@@ -18,6 +18,8 @@ const ProductForm = ({ product }) => {
     addVariantToCart,
     store: { client, adding },
   } = useContext(StoreContext)
+
+  console.log(variant)
 
   const productVariant =
     client.product.helpers.variantForOptions(product, variant) || variant
@@ -62,6 +64,7 @@ const ProductForm = ({ product }) => {
     )
 
     setVariant({ ...selectedVariant })
+    setColor(selectedVariant.title)
   }
 
   const handleAddToCart = () => {
@@ -100,13 +103,24 @@ const ProductForm = ({ product }) => {
   return (
     <>
       <h3>{price}</h3>
-      {options.map(({ id, name, values }, index) => (
+      {options[0].values.length > 1 && options.map(({ id, name, values }, index) => (
         <React.Fragment key={id}>
-          <label htmlFor={name}>{name} </label>
+          {values.map(value => (
+            <input
+              type="radio"
+              value={value}
+              key={value}
+              disabled={checkDisabled(name, value)}
+              checked={color === value}
+              onChange={event => handleOptionChange(index, event)}
+            />
+          ))}
+
+          {/* <label htmlFor={name}>{name} </label>
           <select
             name={name}
             key={id}
-            onBlur={event => handleOptionChange(index, event)}
+            onChange={event => handleOptionChange(index, event)}
           >
             {values.map(value => (
               <option
@@ -118,7 +132,7 @@ const ProductForm = ({ product }) => {
               </option>
             ))}
           </select>
-          <br />
+          <br /> */}
         </React.Fragment>
       ))}
       <label htmlFor="quantity">Quantity </label>

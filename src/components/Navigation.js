@@ -36,8 +36,12 @@ const Navigation = ({ siteTitle }) => {
 }
 
 const Wrapper = styled.div`
-  background: rebeccapurple;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: transparent;
   margin-bottom: 1.45rem;
+  z-index: 2;
 `
 
 const Container = styled.div`
@@ -46,11 +50,11 @@ const Container = styled.div`
   align-items: baseline;
   padding: 1.45rem;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 1200px;
 `
 
 const MenuLink = styled(Link)`
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 2rem;
   font-weight: bold;

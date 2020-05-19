@@ -6,6 +6,7 @@ import styled from '@emotion/styled'
 import ContextProvider from '~/provider/ContextProvider'
 
 import { GlobalStyle } from '~/utils/styles'
+import BgImage from '~/components/BgImage'
 import Navigation from '~/components/Navigation'
 
 const Wrapper = styled.div`
@@ -31,6 +32,7 @@ const Layout = ({ children }) => {
         render={data => (
           <>
             <Navigation siteTitle={data.site.siteMetadata.title} />
+            <BgImage />
             <Wrapper>
               {children}
             </Wrapper>

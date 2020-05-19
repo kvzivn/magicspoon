@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import SEO from '~/components/seo'
@@ -13,26 +13,36 @@ import {
 
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
+  const [color, setColor] = useState('Silver')
+
+  const ProductImages = () => {
+    return (
+      <>
+        {product.images.map(image => (
+          <Img
+            fluid={image.localFile.childImageSharp.fluid}
+            key={image.id}
+            alt={product.title}
+          />
+        ))}
+      </>
+    )
+  }
+
   return (
     <>
       <SEO title={product.title} description={product.description} />
       <Container>
         <TwoColumnGrid>
           <GridLeft>
-            {product.images.map(image => (
-              <Img
-                fluid={image.localFile.childImageSharp.fluid}
-                key={image.id}
-                alt={product.title}
-              />
-            ))}
+            <ProductImages />
           </GridLeft>
           <GridRight>
             <ProductTitle>{product.title}</ProductTitle>
             <ProductDescription
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
-            <ProductForm product={product} />
+            <ProductForm product={product} color={color} setColor={setColor} />
           </GridRight>
         </TwoColumnGrid>
       </Container>
