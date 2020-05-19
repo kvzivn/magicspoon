@@ -7,7 +7,6 @@ import { breakpoints } from '../utils/styles'
 
 const ProductGrid = () => {
   const { store: {checkout} } = useContext(StoreContext)
-  const [productHover, setProductHover] = useState(false)
   const { allShopifyProduct } = useStaticQuery(
     graphql`
       query {
@@ -30,7 +29,7 @@ const ProductGrid = () => {
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 910) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluid_withWebp_noBase64
                     }
                   }
                 }
