@@ -35,6 +35,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/
+        }
+      }
+    },
+    {
       resolve: `gatsby-source-shopify`,
       options: {
         // The domain name of your Shopify shop. This is required.

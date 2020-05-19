@@ -12,10 +12,9 @@ import Navigation from '~/components/Navigation'
 const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 960px;
-  padding: 0px 1.0875rem 1.45rem;
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   return (
     <ContextProvider>
       <GlobalStyle />
@@ -32,7 +31,7 @@ const Layout = ({ children }) => {
         render={data => (
           <>
             <Navigation siteTitle={data.site.siteMetadata.title} />
-            <BgImage />
+            {location.pathname === '/' && <BgImage />}
             <Wrapper>
               {children}
             </Wrapper>

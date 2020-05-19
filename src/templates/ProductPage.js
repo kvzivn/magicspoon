@@ -2,14 +2,9 @@ import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import SEO from '~/components/seo'
+import Img from 'gatsby-image'
 import ProductForm from '~/components/ProductForm'
-import {
-  Img,
-  Container,
-  TwoColumnGrid,
-  GridLeft,
-  GridRight,
-} from '~/utils/styles'
+import { Container, breakpoints } from '../utils/styles'
 
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
@@ -49,6 +44,26 @@ const ProductPage = ({ data }) => {
     </>
   )
 }
+
+const TwoColumnGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2rem 1fr;
+  grid-template-rows: 1auto;
+  grid-template-areas: "left . right";
+
+  @media (max-width: ${breakpoints.l}px){
+    display: block;
+  }
+`
+
+const GridLeft = styled.div`
+  grid-area: left;
+`
+
+const GridRight = styled.div`
+  grid-area: right;
+`
+
 
 const ProductTitle = styled.h1`
   font-size: 2.25rem;
