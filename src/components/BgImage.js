@@ -17,7 +17,7 @@ const ArtDirectedBackground = ({ className }) => {
         }
         desktopImage: file(relativePath: { eq: "hero.jpg" }) {
           childImageSharp {
-            fluid(quality: 92, maxWidth: 1920) {
+            fluid(quality: 92, maxWidth: 1600) {
               ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }

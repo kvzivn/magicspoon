@@ -23,7 +23,7 @@ const Navigation = ({ siteTitle }) => {
     const windowHeight = window.innerHeight
 
     window.addEventListener('scroll', () => {
-      setHeaderColor(window.scrollY > windowHeight ? 'black' : 'white')
+      setHeaderColor(window.scrollY > windowHeight - 50 ? 'black' : 'white')
     })
   }
 

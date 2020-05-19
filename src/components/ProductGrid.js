@@ -149,7 +149,7 @@ const Title = styled.span`
   font-weight: 300;
   font-size: 1.25rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: 400;
 
   @media (min-width: ${breakpoints.m}px) {
     margin-top: 0;
@@ -158,12 +158,13 @@ const Title = styled.span`
 `
 
 const Subtitle = styled.span`
-  margin-top: .5rem;
+  margin-top: 0;
   font-weight: 300;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: center;
 
   @media (min-width: ${breakpoints.m}px) {
+    margin-top: .5rem;
     max-width: 350px;
     font-size: 2.25rem;
   }
