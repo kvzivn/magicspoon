@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
-
+import styled from '@emotion/styled'
 import StoreContext from '~/context/StoreContext'
-import { Wrapper } from './styles'
 
 const LineItem = props => {
   const { line_item } = props
@@ -44,5 +43,13 @@ const LineItem = props => {
     </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem 0 2rem 0;
+`
 
 export default LineItem

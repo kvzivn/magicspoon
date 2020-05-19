@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-
+import styled from '@emotion/styled'
 import SEO from '~/components/seo'
 import ProductForm from '~/components/ProductForm'
 import {
@@ -10,10 +10,6 @@ import {
   GridLeft,
   GridRight,
 } from '~/utils/styles'
-import {
-  ProductTitle,
-  ProductDescription
-} from './styles'
 
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
@@ -43,6 +39,22 @@ const ProductPage = ({ data }) => {
     </>
   )
 }
+
+const ProductTitle = styled.h1`
+  font-size: 2.25rem;
+  margin-bottom: 15px;
+  word-wrap: break-word;
+  font-family: "Helvetica","Helvetica",sans-serif;
+  font-weight: 400;
+  margin: 0 0 0.5rem;
+  line-height: 1.4;
+`
+
+const ProductDescription = styled.div`
+  margin-top: 40px;
+  font-family: "Helvetica","Helvetica",sans-serif;
+  font-weight: 300;
+`
 
 export const query = graphql`
   query($handle: String!) {

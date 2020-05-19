@@ -35,8 +35,10 @@ const ProductForm = ({ product }) => {
         }
       })
     },
-    [client.product, productVariant.shopifyId, variants]
+    [client.product, productVariant.shopifyId]
   )
+
+  // [client.product, productVariant.shopifyId, variants]
 
   useEffect(() => {
     checkAvailability(product.shopifyId)
@@ -98,13 +100,13 @@ const ProductForm = ({ product }) => {
   return (
     <>
       <h3>{price}</h3>
-      {/* {options.map(({ id, name, values }, index) => (
+      {options.map(({ id, name, values }, index) => (
         <React.Fragment key={id}>
           <label htmlFor={name}>{name} </label>
           <select
             name={name}
             key={id}
-            onChange={event => handleOptionChange(index, event)}
+            onBlur={event => handleOptionChange(index, event)}
           >
             {values.map(value => (
               <option
@@ -118,7 +120,7 @@ const ProductForm = ({ product }) => {
           </select>
           <br />
         </React.Fragment>
-      ))} */}
+      ))}
       <label htmlFor="quantity">Quantity </label>
       <input
         type="number"
