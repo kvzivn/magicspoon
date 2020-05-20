@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from '@emotion/styled'
 import Img from 'gatsby-image'
-import StoreContext from '~/context/StoreContext'
+// import StoreContext from '~/context/StoreContext'
 import { breakpoints } from '../utils/styles'
 
 const ProductGrid = () => {
-  const { store: {checkout} } = useContext(StoreContext)
+  // const { store: {checkout} } = useContext(StoreContext)
   const { allShopifyProduct } = useStaticQuery(
     graphql`
       query {
@@ -36,6 +36,7 @@ const ProductGrid = () => {
               }
               variants {
                 price
+                compareAtPrice
               }
             }
           }
@@ -44,11 +45,13 @@ const ProductGrid = () => {
     `
   )
 
-  const getPrice = price => Intl.NumberFormat(undefined, {
-    currency: checkout.currencyCode ? checkout.currencyCode : 'SEK',
-    minimumFractionDigits: 2,
-    style: 'currency',
-  }).format(parseFloat(price ? price : 0))
+  console.log(allShopifyProduct.edges)
+
+  // const getPrice = price => Intl.NumberFormat(undefined, {
+  //   currency: checkout.currencyCode ? checkout.currencyCode : 'SEK',
+  //   minimumFractionDigits: 2,
+  //   style: 'currency',
+  // }).format(parseFloat(price ? price : 0))
 
   return (
     <Wrapper>
@@ -56,8 +59,7 @@ const ProductGrid = () => {
         ? allShopifyProduct.edges.map(({
           node: { id, handle, title, description, images: [firstImage], variants: [firstVariant] }
         }) => (
-          // <ProductContainer key={id} to={`/product/${handle}/`}>
-          <ProductContainer key={id}>
+          <ProductContainer key={id} to={`/product/${handle}/`}>
             {firstImage && firstImage.localFile &&
               (<ProductImage
                 fluid={firstImage.localFile.childImageSharp.fluid}
@@ -66,7 +68,9 @@ const ProductGrid = () => {
             <Product key={id}>
               <Title>{title}</Title>
               <Subtitle>{description}</Subtitle>
-              <PriceTag>{firstVariant.price.substr(0, firstVariant.price.length-3)} kr</PriceTag>
+              <PriceTag>
+                {firstVariant.price} kr <span> {firstVariant.compareAtPrice} kr</span>
+              </PriceTag>
             </Product>
           </ProductContainer>
         ))
@@ -76,24 +80,22 @@ const ProductGrid = () => {
 }
 
 const Wrapper = styled.div`
-  min-height: 1000px;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 960px;
   margin: 0 auto;
   margin-bottom: 6rem;
 `
 
-const ProductContainer = styled.div`
+const ProductContainer = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8rem;
-  margin-bottom: 6rem;
-  margin-left: 4rem;
-  margin-right: 4rem;
+  margin: 6rem 4rem;
   text-decoration: none;
   color: #1a1a1a;
 
   @media (min-width: ${breakpoints.m}px) {
+    margin: 8rem 0;
     flex-direction: row;
     background: #fffbf2;
   }
@@ -105,12 +107,7 @@ const ProductContainer = styled.div`
   & + & {
     @media (min-width: ${breakpoints.m}px) {
       flex-direction: row-reverse;
-      background: #a0717b;
-      color: white;
-    }
-
-    &:visited {
-      color: white;
+      background: #ffebeb;
     }
   }
 
@@ -124,7 +121,6 @@ const Product = styled.div`
   min-height: 100%;
   flex: 1;
   color: currentColor;
-  z-index: 200;
 
   @media (min-width: ${breakpoints.m}px) {
     max-width: 50%;
@@ -133,15 +129,10 @@ const Product = styled.div`
 
 const ProductImage = styled(Img)`
   width: 100%;
-  z-index: 1;
 
   @media (min-width: ${breakpoints.m}px) {
     width: 50%;
   }
-
-  /* max-width: 400px; */
-  /* border: 2rem solid white; */
-  /* flex: 1; */
 `
 
 const Title = styled.span`
@@ -158,14 +149,12 @@ const Title = styled.span`
 `
 
 const Subtitle = styled.span`
-  margin-top: 0;
+  margin-top: .25rem;
   font-weight: 300;
   font-size: 1.15rem;
-  text-align: center;
+  /* text-align: center; */
 
   @media (min-width: ${breakpoints.m}px) {
-    margin-top: .5rem;
-    max-width: 350px;
     font-size: 2.25rem;
   }
 `
@@ -174,7 +163,18 @@ const PriceTag = styled.span`
   font-weight: 600;
   font-size: 1rem;
   text-align: center;
-  margin-top: 15px;
+  margin-top: .5rem;
+  color: #c00;
+
+  span {
+    color: #999;
+    text-decoration: line-through;
+  }
+
+  @media (min-width: ${breakpoints.m}px) {
+    margin-top: 1rem;
+    font-size: 1.15rem;
+  }
 `
 
 export default ProductGrid

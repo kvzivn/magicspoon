@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import reduce from 'lodash/reduce'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
@@ -14,22 +14,12 @@ const useQuantity = () => {
 	return [total !== 0, total]
 }
 
-const Navigation = ({ siteTitle }) => {
+const Navigation = ({ siteTitle, location }) => {
   const [hasItems, quantity] = useQuantity()
-  const [headerColor, setHeaderColor] = useState('white')
-  const isServer = typeof window === 'undefined'
-
-  if (!isServer) {
-    const windowHeight = window.innerHeight
-
-    window.addEventListener('scroll', () => {
-      setHeaderColor(window.scrollY > windowHeight - 50 ? 'black' : 'white')
-    })
-  }
 
 	return(
 		<Wrapper>
-			<Container style={{ color: headerColor }}>
+			<Container>
 				<LogoLink to='/'>
 					MAGICSPOON
 				</LogoLink>
@@ -46,29 +36,30 @@ const Navigation = ({ siteTitle }) => {
 	)
 }
 
-const CartIcon = styled(IconCart)`
-  margin-top: 4px;
-  width: 20px;
-`
-
 const Wrapper = styled.div`
   position: fixed;
+  top: 0;
   width: 100%;
   z-index: 100;
+  background: white;
 `
 
 const Container = styled.div`
   position: relative;
-  max-width: 1200px;
+  max-width: 960px;
+  height: 60px;
   margin: 0 auto;
-  transition: color 1s ease-in-out;
+
+  @media (min-width: ${breakpoints.m}px) {
+    height: 100px;
+  }
 `
 
 const LogoLink = styled(Link)`
   position: absolute;
-  top: 2rem;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   font-size: 1.5rem;
   letter-spacing: .02em;
   font-weight: 300;
@@ -86,13 +77,26 @@ const LogoLink = styled(Link)`
 
 const CartLink = styled(Link)`
   position: absolute;
-  top: 1.85rem;
+  top: 50%;
   right: 2rem;
-  pointer-events: none;
+  transform: translateY(-50%);
   color: currentColor;
 
   &:visited {
     color: currentColor;
+  }
+
+  @media (min-width: ${breakpoints.l}px) {
+    right: 0;
+  }
+`
+
+const CartIcon = styled(IconCart)`
+  margin-top: 6px;
+  width: 20px;
+
+  @media (min-width: ${breakpoints.m}px) {
+    margin-top: 8px;
   }
 `
 

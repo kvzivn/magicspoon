@@ -1,10 +1,12 @@
 import React from 'react'
 import SEO from '~/components/seo'
+import BgImage from '~/components/BgImage'
 import ProductGrid from '~/components/ProductGrid'
 
 const IndexPage = () => (
   <>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO title="MagicSpoon.se" keywords={[`minisked`, `ketsked`, `sked`]} />
+    <BgImage />
     <ProductGrid />
   </>
 )

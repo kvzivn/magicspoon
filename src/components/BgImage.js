@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from '@emotion/styled'
+import { breakpoints } from '../utils/styles'
 
 import BackgroundImage from 'gatsby-background-image'
 
@@ -54,6 +55,10 @@ const BgImage = styled(ArtDirectedBackground)`
   min-height: 100vh;
   /* So we won't have the default "lightgray" background-color. */
   background-color: transparent;
+
+  @media (min-width: ${breakpoints.m}px) {
+    min-height: 90vh;
+  }
 `
 
 export default BgImage

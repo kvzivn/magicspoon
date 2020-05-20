@@ -6,25 +6,25 @@ export const breakpoints = {
   s: 576,
   m: 768,
   l: 992,
-  xl: 1200,
+  xl: 1400,
 }
 
 export const GlobalStyle = props => (
   <Global
     {...props}
     styles={css`
-      body {
-        margin: 0;
-      }
       html {
-        font-family: 'Lato', Arial, Helvetica, sans-serif;
-        color: #494949;
-        line-height: 1.5;
-        font-weight: 300;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%; */
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: 'Lato', Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+        font-weight: 300;
+        color: #1a1a1a;
       }
       a {
         &:visited {
@@ -36,16 +36,10 @@ export const GlobalStyle = props => (
 )
 
 export const Container = styled.div`
-  margin: 0 auto;
   max-width: 960px;
-`
+  margin: 0 auto;
 
-export const MainContent = styled.main`
-  margin-top: 80px;
-  margin-bottom: 40px;
-
-  @media (max-width: ${breakpoints.l}px){
-    margin-top: 40px;
-    margin-bottom: 20px;
+  @media (min-width: ${breakpoints.xl}px) {
+    max-width: 1400px;
   }
 `

@@ -46,13 +46,15 @@ const ProductPage = ({ data }) => {
 }
 
 const TwoColumnGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2rem 1fr;
-  grid-template-rows: 1auto;
-  grid-template-areas: "left . right";
+  display: block;
+  margin-top: 4rem;
 
-  @media (max-width: ${breakpoints.l}px){
-    display: block;
+  @media (min-width: ${breakpoints.m}px){
+    display: grid;
+    grid-template-columns: 1fr 2rem 1fr;
+    grid-template-rows: 1auto;
+    grid-template-areas: "left . right";
+    margin-top: 8rem;
   }
 `
 
@@ -64,20 +66,12 @@ const GridRight = styled.div`
   grid-area: right;
 `
 
-
 const ProductTitle = styled.h1`
   font-size: 2.25rem;
-  margin-bottom: 15px;
   word-wrap: break-word;
-  font-family: "Helvetica","Helvetica",sans-serif;
-  font-weight: 400;
-  margin: 0 0 0.5rem;
-  line-height: 1.4;
 `
 
 const ProductDescription = styled.div`
-  margin-top: 40px;
-  font-family: "Helvetica","Helvetica",sans-serif;
   font-weight: 300;
 `
 
