@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
+import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import SEO from '~/components/seo'
-import Img from 'gatsby-image'
 import ProductForm from '~/components/ProductForm'
 import { Container, breakpoints } from '../utils/styles'
 
@@ -10,19 +10,6 @@ const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
   const [color, setColor] = useState('Silver')
 
-  const ProductImages = () => {
-    return (
-      <>
-        {product.images.map(image => (
-          <Img
-            fluid={image.localFile.childImageSharp.fluid}
-            key={image.id}
-            alt={product.title}
-          />
-        ))}
-      </>
-    )
-  }
 
   return (
     <>
@@ -30,13 +17,43 @@ const ProductPage = ({ data }) => {
       <Container>
         <TwoColumnGrid>
           <GridLeft>
-            <ProductImages />
+            {product.images.length === 1 &&
+              <Img
+                fluid={product.images[0].localFile.childImageSharp.fluid}
+                key={product.images[0].id}
+                alt="product"
+              />
+            }
+
+            {product.images.length > 1 && color === 'Silver' &&
+              <Img
+                fluid={product.images[1].localFile.childImageSharp.fluid}
+                key={product.images[1].id}
+                alt="product"
+              />
+            }
+
+            {product.images.length > 1 && color === 'Rosé' &&
+              <Img
+                fluid={product.images[2].localFile.childImageSharp.fluid}
+                key={product.images[2].id}
+                alt="product"
+              />
+            }
+
+            {product.images.length > 1 && color === 'Guld' &&
+              <Img
+                fluid={product.images[3].localFile.childImageSharp.fluid}
+                key={product.images[3].id}
+                alt="product"
+              />
+            }
           </GridLeft>
           <GridRight>
             <ProductTitle>{product.title}</ProductTitle>
-            <ProductDescription
+            {/* <ProductDescription
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-            />
+            /> */}
             <ProductForm product={product} color={color} setColor={setColor} />
           </GridRight>
         </TwoColumnGrid>
@@ -67,13 +84,14 @@ const GridRight = styled.div`
 `
 
 const ProductTitle = styled.h1`
+  margin-bottom: 0;
   font-size: 2.25rem;
   word-wrap: break-word;
 `
 
-const ProductDescription = styled.div`
-  font-weight: 300;
-`
+// const ProductDescription = styled.div`
+//   font-weight: 300;
+// `
 
 export const query = graphql`
   query($handle: String!) {
@@ -94,6 +112,7 @@ export const query = graphql`
         id
         title
         price
+        compareAtPrice
         availableForSale
         shopifyId
         selectedOptions {

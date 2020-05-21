@@ -39,7 +39,6 @@ const ArtDirectedBackground = ({ className }) => {
   return (
     <BackgroundImage
       Tag={`section`}
-      id={`media-test`}
       className={className}
       fluid={sources}
     />
@@ -47,17 +46,15 @@ const ArtDirectedBackground = ({ className }) => {
 }
 
 const BgImage = styled(ArtDirectedBackground)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   width: 100%;
   min-height: 100vh;
-  /* So we won't have the default "lightgray" background-color. */
+  background-position: center top;
   background-color: transparent;
 
   @media (min-width: ${breakpoints.m}px) {
-    min-height: 90vh;
+    /* margin-top: -100px; */
+    margin-top: 100px;
+    min-height: calc(100vh - 200px);
   }
 `
 

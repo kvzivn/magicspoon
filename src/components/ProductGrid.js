@@ -2,11 +2,9 @@ import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from '@emotion/styled'
 import Img from 'gatsby-image'
-// import StoreContext from '~/context/StoreContext'
 import { breakpoints } from '../utils/styles'
 
 const ProductGrid = () => {
-  // const { store: {checkout} } = useContext(StoreContext)
   const { allShopifyProduct } = useStaticQuery(
     graphql`
       query {
@@ -44,14 +42,6 @@ const ProductGrid = () => {
       }
     `
   )
-
-  console.log(allShopifyProduct.edges)
-
-  // const getPrice = price => Intl.NumberFormat(undefined, {
-  //   currency: checkout.currencyCode ? checkout.currencyCode : 'SEK',
-  //   minimumFractionDigits: 2,
-  //   style: 'currency',
-  // }).format(parseFloat(price ? price : 0))
 
   return (
     <Wrapper>

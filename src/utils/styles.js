@@ -25,6 +25,7 @@ export const GlobalStyle = props => (
         line-height: 1.5;
         font-weight: 300;
         color: #1a1a1a;
+        overflow-y: scroll;
       }
       a {
         &:visited {

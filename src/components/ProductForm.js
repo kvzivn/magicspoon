@@ -2,7 +2,8 @@ import React, { useState, useContext, useEffect, useCallback } from 'react'
 import find from 'lodash/find'
 import isEqual from 'lodash/isEqual'
 import PropTypes from 'prop-types'
-
+import styled from '@emotion/styled'
+import { breakpoints } from '../utils/styles'
 import StoreContext from '~/context/StoreContext'
 
 const ProductForm = ({ product, color, setColor }) => {
@@ -10,7 +11,6 @@ const ProductForm = ({ product, color, setColor }) => {
     options,
     variants,
     variants: [initialVariant],
-    priceRange: { minVariantPrice },
   } = product
   const [variant, setVariant] = useState({ ...initialVariant })
   const [quantity, setQuantity] = useState(1)
@@ -18,8 +18,6 @@ const ProductForm = ({ product, color, setColor }) => {
     addVariantToCart,
     store: { client, adding },
   } = useContext(StoreContext)
-
-  console.log(variant)
 
   const productVariant =
     client.product.helpers.variantForOptions(product, variant) || variant
@@ -94,69 +92,95 @@ const ProductForm = ({ product, color, setColor }) => {
     return true
   }
 
-  const price = Intl.NumberFormat(undefined, {
-    currency: minVariantPrice.currencyCode,
-    minimumFractionDigits: 2,
-    style: 'currency',
-  }).format(variant.price)
+  // const price = Intl.NumberFormat(undefined, {
+  //   currency: minVariantPrice.currencyCode,
+  //   minimumFractionDigits: 2,
+  //   style: 'currency',
+  // }).format(variant.price)
 
   return (
     <>
-      <h3>{price}</h3>
-      {options[0].values.length > 1 && options.map(({ id, name, values }, index) => (
-        <React.Fragment key={id}>
-          {values.map(value => (
-            <input
-              type="radio"
-              value={value}
-              key={value}
-              disabled={checkDisabled(name, value)}
-              checked={color === value}
-              onChange={event => handleOptionChange(index, event)}
-            />
-          ))}
-
-          {/* <label htmlFor={name}>{name} </label>
-          <select
-            name={name}
-            key={id}
-            onChange={event => handleOptionChange(index, event)}
-          >
+      <PriceTag>
+        {initialVariant.price} kr <span> {initialVariant.compareAtPrice} kr</span>
+      </PriceTag>
+      <div>
+        {options[0].values.length > 1 && options.map(({ id, name, values }, index) => (
+          <React.Fragment key={id}>
+            {/* <label htmlFor={name}>Välj färg:</label>
             {values.map(value => (
-              <option
-                value={value}
-                key={`${name}-${value}`}
-                disabled={checkDisabled(name, value)}
-              >
-                {value}
-              </option>
-            ))}
-          </select>
-          <br /> */}
-        </React.Fragment>
-      ))}
-      <label htmlFor="quantity">Quantity </label>
-      <input
-        type="number"
-        id="quantity"
-        name="quantity"
-        min="1"
-        step="1"
-        onChange={handleQuantityChange}
-        value={quantity}
-      />
-      <br />
+              <>
+                <label htmlFor={value}>{value}</label>
+                <input
+                  type="radio"
+                  name={value}
+                  value={value}
+                  key={value}
+                  disabled={checkDisabled(name, value)}
+                  checked={color === value}
+                  onChange={event => handleOptionChange(index, event)}
+                />
+              </>
+            ))} */}
+
+            <label htmlFor={name}>Välj färg: </label>
+            <select
+              name={name}
+              key={id}
+              onChange={event => handleOptionChange(index, event)}
+            >
+              {values.map(value => (
+                <option
+                  value={value}
+                  key={`${name}-${value}`}
+                  disabled={checkDisabled(name, value)}
+                >
+                  {value}
+                </option>
+              ))}
+            </select>
+          </React.Fragment>
+        ))}
+      </div>
+      <div>
+        <label htmlFor="quantity">Antal: </label>
+        <input
+          type="number"
+          id="quantity"
+          name="quantity"
+          min="1"
+          step="1"
+          onChange={handleQuantityChange}
+          value={quantity}
+        />
+      </div>
       <button
         type="submit"
         disabled={!available || adding}
         onClick={handleAddToCart}
       >
-        Add to Cart
+        Lägg till i kundvagn
       </button>
       {!available && <p>This Product is out of Stock!</p>}
     </>
   )
 }
+
+const PriceTag = styled.span`
+  display: block;
+  margin-bottom: 4rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #c00;
+
+  span {
+    color: #999;
+    text-decoration: line-through;
+  }
+
+  @media (min-width: ${breakpoints.m}px) {
+    font-size: 1.15rem;
+  }
+`
 
 ProductForm.propTypes = {
   product: PropTypes.shape({
