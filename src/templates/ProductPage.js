@@ -10,7 +10,6 @@ const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
   const [color, setColor] = useState('Silver')
 
-
   return (
     <>
       <SEO title={product.title} description={product.description} />
@@ -77,6 +76,11 @@ const TwoColumnGrid = styled.div`
 
 const GridLeft = styled.div`
   grid-area: left;
+  padding: 0 5rem 1rem;
+
+  @media (min-width: ${breakpoints.m}px) {
+    padding: .75rem;
+  }
 `
 
 const GridRight = styled.div`
@@ -84,14 +88,15 @@ const GridRight = styled.div`
 `
 
 const ProductTitle = styled.h1`
-  margin-bottom: 0;
+  margin: 0;
   font-size: 2.25rem;
   word-wrap: break-word;
-`
+  text-align: center;
 
-// const ProductDescription = styled.div`
-//   font-weight: 300;
-// `
+  @media (min-width: ${breakpoints.m}px) {
+    text-align: left;
+  }
+`
 
 export const query = graphql`
   query($handle: String!) {

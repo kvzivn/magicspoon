@@ -98,31 +98,40 @@ const ProductForm = ({ product, color, setColor }) => {
   //   style: 'currency',
   // }).format(variant.price)
 
+  const addQuantity = () => setQuantity(quantity + 1)
+
+  const decreaseQuantity = () => {
+    if (quantity === 1) return
+
+    setQuantity(quantity - 1)
+  }
+
   return (
-    <>
+    <Wrapper>
       <PriceTag>
         {initialVariant.price} kr <span> {initialVariant.compareAtPrice} kr</span>
       </PriceTag>
       <div>
         {options[0].values.length > 1 && options.map(({ id, name, values }, index) => (
           <React.Fragment key={id}>
-            {/* <label htmlFor={name}>Välj färg:</label>
+            <Label htmlFor={name}>Välj färg:</Label>
             {values.map(value => (
-              <>
-                <label htmlFor={value}>{value}</label>
+              <Color key={value}>
                 <input
                   type="radio"
                   name={value}
+                  id={value}
                   value={value}
                   key={value}
                   disabled={checkDisabled(name, value)}
                   checked={color === value}
                   onChange={event => handleOptionChange(index, event)}
                 />
-              </>
-            ))} */}
-
-            <label htmlFor={name}>Välj färg: </label>
+                <label htmlFor={value} />
+              </Color>
+            ))}
+{/*
+            <Label htmlFor={name}>Välj färg: </Label>
             <select
               name={name}
               key={id}
@@ -137,37 +146,171 @@ const ProductForm = ({ product, color, setColor }) => {
                   {value}
                 </option>
               ))}
-            </select>
+            </select> */}
           </React.Fragment>
         ))}
       </div>
       <div>
-        <label htmlFor="quantity">Antal: </label>
-        <input
-          type="number"
-          id="quantity"
-          name="quantity"
-          min="1"
-          step="1"
-          onChange={handleQuantityChange}
-          value={quantity}
-        />
+        <Label htmlFor="quantity">Antal: </Label>
+        <QuantityWrapper>
+          <QuantityBtn onClick={decreaseQuantity}>-</QuantityBtn>
+          <QuantityInput
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="1"
+            pattern="[0-9]*"
+            onChange={handleQuantityChange}
+            value={quantity}
+          />
+          <QuantityBtn onClick={addQuantity}>+</QuantityBtn>
+        </QuantityWrapper>
       </div>
-      <button
+      <Button
         type="submit"
         disabled={!available || adding}
         onClick={handleAddToCart}
       >
         Lägg till i kundvagn
-      </button>
+      </Button>
       {!available && <p>This Product is out of Stock!</p>}
-    </>
+    </Wrapper>
   )
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+
+  @media (min-width: ${breakpoints.m}px) {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+`
+
+const Color = styled.div`
+  display: inline-block;
+  color: #f1bcb4;
+
+  &:nth-of-type(2) {
+    color: #d8d8d8;
+  }
+
+  &:last-child {
+    color: #f7e687;
+  }
+
+  & + & {
+    margin-left: 12px;
+  }
+
+  input {
+    position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked ~ label {
+      outline-color: black;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  label {
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    outline: 1px solid #ccc;
+    background: currentColor;
+    border: 2px solid white;
+    cursor: pointer;
+  }
+`
+
+const Button = styled.button`
+  display: block;
+  margin-top: 2rem;
+  background: transparent;
+  border: 2px solid;
+  color: #333;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
+  outline: none;
+  background-color: white;
+  padding: .5rem 2rem;
+  font-size: .75rem;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+`
+
+const Label = styled.label`
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 4px;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+  font-size: 0.6875em;
+  color: rgb(112, 112, 112);
+  text-transform: uppercase;
+  font-weight: 600;
+`
+
+const QuantityWrapper = styled.div`
+  display: flex;
+  width: 100%;
+`
+
+const QuantityInput = styled.input`
+  width: 60px;
+  margin: 0 4px;
+  color: #333;
+  text-align: center;
+  box-sizing: border-box;
+  height: 30px;
+  border: 2px solid;
+  font-size: .75rem;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`
+
+const QuantityBtn = styled.button`
+  width: 30px;
+  height: 30px;
+  color: #333;
+  border: 2px solid;
+  font-size: 1rem;
+  cursor: pointer;
+  background: white;
+
+  &:focus {
+    outline: none;
+  }
+`
+
 const PriceTag = styled.span`
   display: block;
-  margin-bottom: 4rem;
+  margin-top: .5rem;
   font-weight: 600;
   font-size: 1rem;
   color: #c00;
@@ -178,6 +321,7 @@ const PriceTag = styled.span`
   }
 
   @media (min-width: ${breakpoints.m}px) {
+    margin-bottom: 2rem;
     font-size: 1.15rem;
   }
 `

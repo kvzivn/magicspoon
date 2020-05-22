@@ -52,7 +52,6 @@ const BgImage = styled(ArtDirectedBackground)`
   background-color: transparent;
 
   @media (min-width: ${breakpoints.m}px) {
-    /* margin-top: -100px; */
     margin-top: 100px;
     min-height: calc(100vh - 200px);
   }

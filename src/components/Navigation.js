@@ -101,13 +101,19 @@ const CartIcon = styled(IconCart)`
 `
 
 const CartCounter = styled.span`
-  border-radius: 50%;
-  border: 2px solid transparent;
-  padding: 4px 8px;
+  position: absolute;
+  top: -6px;
+  right: -15px;
+  padding: 0 6px;
   font-size: .75rem;
-  float: right;
-  margin: -10px;
-  z-index: 20;
+  font-weight: bold;
+  color: white;
+  background: #1a1a1a;
+  border-radius: 50%;
+
+  @media (min-width: ${breakpoints.l}px) {
+    right: -12px;
+  }
 `
 
 export default Navigation
