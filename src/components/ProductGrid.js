@@ -142,7 +142,6 @@ const Subtitle = styled.span`
   margin-top: .25rem;
   font-weight: 300;
   font-size: 1.15rem;
-  /* text-align: center; */
 
   @media (min-width: ${breakpoints.m}px) {
     font-size: 2.25rem;
@@ -157,7 +156,9 @@ const PriceTag = styled.span`
   color: #c00;
 
   span {
+    margin-left: .25rem;
     color: #999;
+    font-weight: 500;
     text-decoration: line-through;
   }
 

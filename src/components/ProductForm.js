@@ -127,26 +127,13 @@ const ProductForm = ({ product, color, setColor }) => {
                   checked={color === value}
                   onChange={event => handleOptionChange(index, event)}
                 />
-                <label htmlFor={value} />
+                <label htmlFor={value}>
+                  {checkDisabled(name, value) &&
+                    <DisabledSVG preserveAspectRatio="none" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 100 100"><path fill="#979797" fill-rule="nonzero" d="M98.586 0H100v1.414L51.414 50 100 98.586V100h-1.414L50 51.414 1.414 100H0v-1.414L48.586 50 0 1.414V0h1.414L50 48.586z"></path></DisabledSVG>
+                  }
+                </label>
               </Color>
             ))}
-{/*
-            <Label htmlFor={name}>Välj färg: </Label>
-            <select
-              name={name}
-              key={id}
-              onChange={event => handleOptionChange(index, event)}
-            >
-              {values.map(value => (
-                <option
-                  value={value}
-                  key={`${name}-${value}`}
-                  disabled={checkDisabled(name, value)}
-                >
-                  {value}
-                </option>
-              ))}
-            </select> */}
           </React.Fragment>
         ))}
       </div>
@@ -166,14 +153,14 @@ const ProductForm = ({ product, color, setColor }) => {
           <QuantityBtn onClick={addQuantity}>+</QuantityBtn>
         </QuantityWrapper>
       </div>
-      <Button
+      <Btn
         type="submit"
         disabled={!available || adding}
         onClick={handleAddToCart}
       >
-        Lägg till i kundvagn
-      </Button>
-      {!available && <p>This Product is out of Stock!</p>}
+        Lägg i varukorg
+      </Btn>
+      {!available && <p>Slutsålt just nu, tyvärr!</p>}
     </Wrapper>
   )
 }
@@ -192,10 +179,11 @@ const Wrapper = styled.div`
 `
 
 const Color = styled.div`
+  position: relative;
   display: inline-block;
   color: #f1bcb4;
 
-  &:nth-of-type(2) {
+  &:nth-of-type(1) {
     color: #d8d8d8;
   }
 
@@ -235,24 +223,56 @@ const Color = styled.div`
   }
 `
 
-const Button = styled.button`
+const DisabledSVG = styled.svg`
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  stroke: #adadad;
+  stroke-width: 2px;
+`
+
+const Btn = styled.button`
   display: block;
   margin-top: 2rem;
-  background: transparent;
-  border: 2px solid;
-  color: #333;
-  text-transform: uppercase;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.1s ease-in-out;
-  outline: none;
-  background-color: white;
   padding: .5rem 2rem;
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: normal;
+  background: none;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
   font-size: .75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 2px solid;
+  overflow: hidden;
+  width: 245px;
+  will-change: auto;
+  transition: all .2s ease-in-out;
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  color: #1a1a1a;
+  border-color: #aaa;
+  -webkit-appearance: button;
   cursor: pointer;
 
   &:focus {
     outline: none;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:hover {
+    color: #fff;
+    border-color: #333;
+    background: #333;
   }
 `
 
@@ -280,7 +300,7 @@ const QuantityInput = styled.input`
   text-align: center;
   box-sizing: border-box;
   height: 30px;
-  border: 2px solid;
+  border: 2px solid #aaa;
   font-size: .75rem;
 
   &::-webkit-inner-spin-button,
@@ -298,7 +318,7 @@ const QuantityBtn = styled.button`
   width: 30px;
   height: 30px;
   color: #333;
-  border: 2px solid;
+  border: 2px solid #aaa;
   font-size: 1rem;
   cursor: pointer;
   background: white;
@@ -316,7 +336,9 @@ const PriceTag = styled.span`
   color: #c00;
 
   span {
+    margin-left: .25rem;
     color: #999;
+    font-weight: 500;
     text-decoration: line-through;
   }
 
