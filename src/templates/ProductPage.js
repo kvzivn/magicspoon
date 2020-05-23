@@ -3,6 +3,7 @@ import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import SEO from '~/components/seo'
+import Sparkles from '~/components/Sparkles'
 import ProductForm from '~/components/ProductForm'
 import { Container, breakpoints } from '../utils/styles'
 
@@ -16,6 +17,12 @@ const ProductPage = ({ data }) => {
       <Container>
         <TwoColumnGrid>
           <GridLeft>
+            {/*
+
+              snygga ti da liete härva vaaa
+
+            */}
+
             {product.images.length === 1 &&
               <Img
                 fluid={product.images[0].localFile.childImageSharp.fluid}
@@ -49,7 +56,7 @@ const ProductPage = ({ data }) => {
             }
           </GridLeft>
           <GridRight>
-            <ProductTitle>{product.title}</ProductTitle>
+            <ProductTitle><Sparkles>{product.title}</Sparkles></ProductTitle>
             {/* <ProductDescription
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             /> */}

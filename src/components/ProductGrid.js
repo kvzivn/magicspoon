@@ -2,6 +2,7 @@ import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from '@emotion/styled'
 import Img from 'gatsby-image'
+import Sparkles from './Sparkles'
 import { breakpoints } from '../utils/styles'
 
 const ProductGrid = () => {

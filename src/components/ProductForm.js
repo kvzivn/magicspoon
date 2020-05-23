@@ -4,6 +4,7 @@ import isEqual from 'lodash/isEqual'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { breakpoints } from '../utils/styles'
+import Button from './Button'
 import StoreContext from '~/context/StoreContext'
 
 const ProductForm = ({ product, color, setColor }) => {
@@ -129,7 +130,7 @@ const ProductForm = ({ product, color, setColor }) => {
                 />
                 <label htmlFor={value}>
                   {checkDisabled(name, value) &&
-                    <DisabledSVG preserveAspectRatio="none" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 100 100"><path fill="#979797" fill-rule="nonzero" d="M98.586 0H100v1.414L51.414 50 100 98.586V100h-1.414L50 51.414 1.414 100H0v-1.414L48.586 50 0 1.414V0h1.414L50 48.586z"></path></DisabledSVG>
+                    <DisabledSVG preserveAspectRatio="none" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 100 100"><path fill="#979797"  d="M98.586 0H100v1.414L51.414 50 100 98.586V100h-1.414L50 51.414 1.414 100H0v-1.414L48.586 50 0 1.414V0h1.414L50 48.586z"></path></DisabledSVG>
                   }
                 </label>
               </Color>
@@ -153,13 +154,13 @@ const ProductForm = ({ product, color, setColor }) => {
           <QuantityBtn onClick={addQuantity}>+</QuantityBtn>
         </QuantityWrapper>
       </div>
-      <Btn
+      <Button
         type="submit"
         disabled={!available || adding}
         onClick={handleAddToCart}
       >
         Lägg i varukorg
-      </Btn>
+      </Button>
       {!available && <p>Slutsålt just nu, tyvärr!</p>}
     </Wrapper>
   )
@@ -236,46 +237,6 @@ const DisabledSVG = styled.svg`
   stroke-width: 2px;
 `
 
-const Btn = styled.button`
-  display: block;
-  margin-top: 2rem;
-  padding: .5rem 2rem;
-  box-sizing: border-box;
-  font-family: inherit;
-  line-height: normal;
-  background: none;
-  vertical-align: middle;
-  position: relative;
-  z-index: 1;
-  font-size: .75rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border: 2px solid;
-  overflow: hidden;
-  width: 245px;
-  will-change: auto;
-  transition: all .2s ease-in-out;
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-  color: #1a1a1a;
-  border-color: #aaa;
-  -webkit-appearance: button;
-  cursor: pointer;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
-
-  &:hover {
-    color: #fff;
-    border-color: #333;
-    background: #333;
-  }
-`
-
 const Label = styled.label`
   display: block;
   margin-top: 1rem;
@@ -291,6 +252,7 @@ const Label = styled.label`
 const QuantityWrapper = styled.div`
   display: flex;
   width: 100%;
+  margin-bottom: 2rem;
 `
 
 const QuantityInput = styled.input`
@@ -301,6 +263,7 @@ const QuantityInput = styled.input`
   box-sizing: border-box;
   height: 30px;
   border: 2px solid #aaa;
+  border-radius: 0px;
   font-size: .75rem;
 
   &::-webkit-inner-spin-button,
@@ -343,7 +306,7 @@ const PriceTag = styled.span`
   }
 
   @media (min-width: ${breakpoints.m}px) {
-    margin-bottom: 2rem;
+    margin-bottom: .75rem;
     font-size: 1.15rem;
   }
 `
