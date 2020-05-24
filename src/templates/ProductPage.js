@@ -56,7 +56,7 @@ const ProductPage = ({ data }) => {
             }
           </GridLeft>
           <GridRight>
-            <ProductTitle><Sparkles>{product.title}</Sparkles></ProductTitle>
+            <ProductTitle>{product.title}</ProductTitle>
             {/* <ProductDescription
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             /> */}

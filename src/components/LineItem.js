@@ -11,13 +11,6 @@ const LineItem = props => {
     store: { client, checkout }
   } = useContext(StoreContext)
 
-  const variantImage = line_item.variant.image ? (
-    <ProductImage
-      src={line_item.variant.image.src}
-      alt={`${line_item.title} product shot`}
-    />
-  ) : null
-
   const selectedOptions = line_item.variant.selectedOptions
     ? line_item.variant.selectedOptions.map(
         option => `${option.name}: ${option.value} `
@@ -30,12 +23,15 @@ const LineItem = props => {
 
   return (
     <Wrapper>
-      {variantImage}
-      <span>{line_item.title}</span>
-      <span>
-        {line_item.variant.title !== 'Default Title' && line_item.variant.title} ({line_item.quantity} st)
-      </span>
-      <Button onClick={handleRemove}>Ta bort</Button>
+      <ProductImage
+        src={line_item.variant.image.src}
+        alt={`${line_item.title} product shot`}
+      />
+      <Title>{line_item.title}</Title>
+      <Variant>
+        {line_item.quantity} st {line_item.variant.title !== 'Default Title' && `(${line_item.variant.title})`}
+      </Variant>
+      <Button secondary onClick={handleRemove}>Ta bort</Button>
     </Wrapper>
   )
 }
@@ -55,14 +51,9 @@ const Wrapper = styled.div`
     margin-top: 1rem;
   }
 
-  span {
-    margin-top: .5rem;
-    font-weight: 400;
-  }
-
   @media (min-width: ${breakpoints.m}px) {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 
     > * + * {
@@ -71,11 +62,23 @@ const Wrapper = styled.div`
   }
 `
 
+const Title = styled.span`
+  width: 150px;
+  font-weight: 600;
+  text-align: center;
+`
+
+const Variant = styled.span`
+  width: 150px;
+  font-weight: 400;
+  text-align: center;
+`
+
 const ProductImage = styled.img`
-  height: 175px;
+  width: 175px;
 
   @media (min-width: ${breakpoints.m}px) {
-    height: 125px;
+    width: 125px;
   }
 `
 

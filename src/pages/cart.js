@@ -4,9 +4,9 @@ import { Container } from '~/utils/styles'
 
 const CartPage = () => (
   <Container>
-    <h1>Cart</h1>
     <Cart />
   </Container>
 )
 
 export default CartPage
+

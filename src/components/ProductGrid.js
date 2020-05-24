@@ -58,7 +58,7 @@ const ProductGrid = () => {
             />)}
             <Product key={id}>
               <Title>{title}</Title>
-              <Subtitle>{description}</Subtitle>
+              <Sparkles><Subtitle>{description}</Subtitle></Sparkles>
               <PriceTag>
                 {firstVariant.price} kr <span> {firstVariant.compareAtPrice} kr</span>
               </PriceTag>

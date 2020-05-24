@@ -156,6 +156,7 @@ const ProductForm = ({ product, color, setColor }) => {
       </div>
       <Button
         type="submit"
+        secondary
         disabled={!available || adding}
         onClick={handleAddToCart}
       >

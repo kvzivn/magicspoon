@@ -4,6 +4,8 @@ import StoreContext from '~/context/StoreContext'
 import Sparkles from './Sparkles'
 import Button from './Button'
 import LineItem from './LineItem'
+import PaymentIcons from './PaymentIcons'
+import { breakpoints } from '../utils/styles'
 
 const Cart = () => {
   const {store: { checkout }} = useContext(StoreContext)
@@ -24,15 +26,23 @@ const Cart = () => {
       <Total>
         <Heading>Totalt:</Heading>
         <Price>{checkout.totalPrice} kr</Price>
-        <Button onClick={handleCheckout} disabled={checkout.lineItems.length === 0}>Gå till betalning</Button>
+        <Button onClick={handleCheckout} disabled={checkout.lineItems.length === 0}>
+          Gå till betalning
+        </Button>
       </Total>
+      <PaymentIcons />
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
   position: relative;
+  margin: 5rem auto 0;
   padding-bottom: 10rem;
+
+  @media (min-width: ${breakpoints.m}px) {
+    margin: 8rem auto 0;
+  }
 `
 
 const Total = styled.div`
@@ -41,7 +51,7 @@ const Total = styled.div`
   align-items: center;
   margin-top: 1rem;
   padding-top: 1rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
 `
 
 const Heading = styled.h3`
@@ -50,7 +60,7 @@ const Heading = styled.h3`
 `
 
 const Price = styled.span`
-  margin-bottom: 1.5rem;
+  margin-bottom: .75rem;
   font-weight: 600;
   font-size: 1.75rem;
 `

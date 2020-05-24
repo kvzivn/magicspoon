@@ -47,7 +47,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   position: relative;
   max-width: 960px;
-  height: 60px;
+  height: 70px;
   margin: 0 auto;
 
   @media (min-width: ${breakpoints.m}px) {
