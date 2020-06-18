@@ -6,7 +6,7 @@ export const breakpoints = {
   s: 576,
   m: 768,
   l: 992,
-  xl: 1400,
+  xl: 1500,
 }
 
 export const GlobalStyle = props => (
