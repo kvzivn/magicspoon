@@ -5,36 +5,7 @@ import styled from '@emotion/styled'
 import { breakpoints } from '../utils/styles'
 import StoreContext from '~/context/StoreContext'
 import IconCart from '../images/icon_cart.svg'
-
-const useQuantity = () => {
-	const { store: {checkout} } = useContext(StoreContext)
-	const items = checkout ? checkout.lineItems : []
-	const total = reduce(items, (acc, item) => acc + item.quantity, 0)
-
-	return [total !== 0, total]
-}
-
-const Navigation = ({ siteTitle, location }) => {
-  const [hasItems, quantity] = useQuantity()
-
-	return(
-		<Wrapper>
-			<Container>
-				<LogoLink to='/'>
-					MAGICSPOON
-				</LogoLink>
-				<CartLink to='/cart'>
-					{hasItems &&
-						<CartCounter>
-							{quantity}
-						</CartCounter>
-					}
-					<CartIcon />
-				</CartLink>
-			</Container>
-		</Wrapper>
-	)
-}
+import Logo from '../images/logo.svg'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -60,18 +31,13 @@ const LogoLink = styled(Link)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.5rem;
-  letter-spacing: .02em;
-  font-weight: 300;
-  text-decoration: none;
-  color: currentColor;
 
-  &:visited {
-    color: currentColor;
-  }
+  svg {
+    width: 200px;
 
-  @media (min-width: ${breakpoints.m}px){
-    font-size: 1.75rem
+    @media (min-width: ${breakpoints.m}px){
+      width: 280px;
+    }
   }
 `
 
@@ -115,5 +81,35 @@ const CartCounter = styled.span`
     right: -12px;
   }
 `
+
+const useQuantity = () => {
+	const { store: {checkout} } = useContext(StoreContext)
+	const items = checkout ? checkout.lineItems : []
+	const total = reduce(items, (acc, item) => acc + item.quantity, 0)
+
+	return [total !== 0, total]
+}
+
+const Navigation = ({ siteTitle, location }) => {
+  const [hasItems, quantity] = useQuantity()
+
+	return(
+		<Wrapper>
+			<Container>
+				<LogoLink to='/'>
+					<Logo />
+				</LogoLink>
+				<CartLink to='/cart'>
+					{hasItems &&
+						<CartCounter>
+							{quantity}
+						</CartCounter>
+					}
+					<CartIcon />
+				</CartLink>
+			</Container>
+		</Wrapper>
+	)
+}
 
 export default Navigation
