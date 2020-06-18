@@ -12,9 +12,6 @@ const PaymentIcons = () => (
     <Icon>
       <Klarna />
     </Icon>
-    <Icon>
-      <PayPal />
-    </Icon>
     <Icon border center>
       <Visa />
     </Icon>
@@ -31,7 +28,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 250px;
+  width: 200px;
   margin: 0 auto;
 `
 
