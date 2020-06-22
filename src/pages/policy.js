@@ -21,6 +21,7 @@ const Policy = () => (
       <p>När du besöker webbplatsen samlar vi automatiskt in viss information om din enhet, inklusive information om din webbläsare, IP-adress, tidszon och några av de cookies som är installerade på din enhet. När du surfar på webbplatsen samlar vi dessutom in information om de enskilda webbsidor eller produkter som du visar, vilka webbplatser eller söktermer som hänvisas till webbplatsen och information om hur du interagerar med webbplatsen. Vi hänvisar till denna automatiskt insamlade information som "enhetsinformation".
       <br /><br />
       Vi samlar in enhets information med hjälp av följande tekniker:
+      <br />
       -"Cookies" är datafiler som placeras på din enhet eller dator och ofta innehåller en anonym unik identifierare. Mer information om cookies och hur du avaktiverar cookies finns på http://www.allaboutcookies.org.
       <br /><br />
       Dessutom när du gör ett köp eller försöker göra ett köp via webbplatsen samlar vi in viss information från dig, inklusive ditt namn, faktureringsadress, leveransadress, betalningsinformation, e-postadress och telefonnummer. Vi hänvisar till denna information som "beställningsinformation".
@@ -38,7 +39,7 @@ const Policy = () => (
       Om du godkänns kommer din återbetalning att behandlas och en kredit kommer automatiskt att tillämpas på ditt konto eller den ursprungliga betalningsmetoden, inom ett visst antal dagar.</p>
 
       <h4>Frakt (Returer)</h4>
-      <p>Du kommer att ansvara för att betala för dina egna fraktkostnader för att returnera din vara. Fraktkostnader återbetalas ej. Om du får en återbetalning kommer kostnaden för returfrakten att dras från din återbetalning. Beroende på var du bor, kan den tid det tar för din utbytta produkt för att nå dig, variera. Om du levererar en vara över 750 SEK, bör du överväga att använda en spårbar frakttjänst eller köpa frakt försäkring. Vi garanterar inte att vi kommer att få din returnerade produkt.</p>
+      <p>Du kommer att ansvara för att betala för dina egna fraktkostnader för att returnera din vara. Fraktkostnader återbetalas ej. Om du får en återbetalning kommer kostnaden för returfrakten att dras från din återbetalning. Beroende på var du bor, kan den tid det tar för din utbytta produkt för att nå dig, variera. Om du returnerar varor över 750 SEK, bör du överväga att använda en spårbar frakttjänst eller köpa frakt försäkring. Vi garanterar inte att vi kommer att få din returnerade produkt.</p>
     </Wrapper>
   </Container>
 )

@@ -73,8 +73,11 @@ const ProductGrid = () => {
 const Wrapper = styled.div`
   width: 100%;
   max-width: 960px;
-  margin: 0 auto;
-  margin-bottom: 6rem;
+  margin: 6rem auto;
+
+  @media (min-width: ${breakpoints.m}px) {
+    margin: 10rem auto 6rem;
+  }
 `
 
 const ProductContainer = styled(Link)`
@@ -145,7 +148,7 @@ const Subtitle = styled.span`
   font-size: 1.15rem;
 
   @media (min-width: ${breakpoints.m}px) {
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
 `
 

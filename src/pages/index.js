@@ -46,7 +46,6 @@ const PolicyLink = styled.div`
 const IndexPage = () => (
   <Wrapper>
     <SEO title="MagicSpoon.se" keywords={[`minisked`, `ketsked`, `sked`]} />
-    <BgImage />
     <ProductGrid />
     <Contact>Frågor? Kontakta oss <a href="mailto:magicspoon16@gmail.com">här.</a></Contact>
     <PolicyLink>
