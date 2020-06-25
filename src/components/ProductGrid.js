@@ -76,7 +76,7 @@ const Wrapper = styled.div`
   margin: 10rem auto 6rem;
 
   @media (min-width: ${breakpoints.m}px) {
-    margin: 10rem auto 6rem;
+    margin: 12rem auto 6rem;
   }
 `
 

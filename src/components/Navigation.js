@@ -95,6 +95,10 @@ const Banner = styled.div`
   span {
     font-size: 1.15rem;
   }
+
+  @media (min-width: ${breakpoints.m}px) {
+    font-size: 1rem;
+  }
 `
 
 const useQuantity = () => {

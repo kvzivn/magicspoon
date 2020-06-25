@@ -60,7 +60,7 @@ const ProductPage = ({ data }) => {
             <ProductDescription
               dangerouslySetInnerHTML={{ __html:
                 product.title === 'Magic Spoon'
-                  ? '<b>Den perfekta accessoaren för alla rejvare!</b><br><br>En liten metallsked i ett likfärgat halsband. Finns i färgerna silver, rosé och guld.'
+                  ? '<b>Den perfekta accessoaren för alla rejvare!</b><br><br>En liten metallsked i ett likfärgat halsband.<br>Finns i färgerna silver, rosé och guld.'
                   : '<b>Köp fler och få rabatt!</b><br><br>Överraska dina rejvkompisar med något av våra fina halsband. I vårt party pack får du en av varje färg.'
               }}
             />
@@ -81,7 +81,7 @@ const TwoColumnGrid = styled.div`
     grid-template-columns: 1fr 2rem 1fr;
     grid-template-rows: 1auto;
     grid-template-areas: "left . right";
-    margin-top: 8rem;
+    margin-top: 12rem;
   }
 `
 
@@ -118,6 +118,9 @@ const ProductDescription = styled.p`
   text-align: center;
 
   @media (min-width: ${breakpoints.m}px) {
+    max-width: 460px;
+    padding: 0;
+    font-size: 1.1rem;
     text-align: left;
   }
 `
