@@ -57,9 +57,13 @@ const ProductPage = ({ data }) => {
           </GridLeft>
           <GridRight>
             <ProductTitle>{product.title}</ProductTitle>
-            {/* <ProductDescription
-              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-            /> */}
+            <ProductDescription
+              dangerouslySetInnerHTML={{ __html:
+                product.title === 'Magic Spoon'
+                  ? '<b>Den perfekta accessoaren för alla rejvare!</b><br><br>En liten metallsked i ett likfärgat halsband. Finns i färgerna silver, rosé och guld.'
+                  : '<b>Köp fler och få rabatt!</b><br><br>Överraska dina rejvkompisar med något av våra fina halsband. I vårt party pack får du en av varje färg.'
+              }}
+            />
             <ProductForm product={product} color={color} setColor={setColor} />
           </GridRight>
         </TwoColumnGrid>
@@ -70,7 +74,7 @@ const ProductPage = ({ data }) => {
 
 const TwoColumnGrid = styled.div`
   display: block;
-  margin-top: 4rem;
+  margin-top: 10rem;
 
   @media (min-width: ${breakpoints.m}px){
     display: grid;
@@ -96,8 +100,21 @@ const GridRight = styled.div`
 
 const ProductTitle = styled.h1`
   margin: 0;
-  font-size: 2.25rem;
+  font-size: 1.75rem;
   word-wrap: break-word;
+  text-align: center;
+  margin-bottom: -.75rem;
+
+  @media (min-width: ${breakpoints.m}px) {
+    text-align: left;
+  }
+`
+
+const ProductDescription = styled.p`
+  margin: 1rem 0;
+  padding: 0 3rem;
+  font-size: .9rem;
+  font-weight: 300;
   text-align: center;
 
   @media (min-width: ${breakpoints.m}px) {

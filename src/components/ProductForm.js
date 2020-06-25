@@ -266,6 +266,7 @@ const QuantityInput = styled.input`
   border: 2px solid #aaa;
   border-radius: 0px;
   font-size: .75rem;
+  -webkit-appearance: none;
 
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {

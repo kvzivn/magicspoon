@@ -73,7 +73,7 @@ const ProductGrid = () => {
 const Wrapper = styled.div`
   width: 100%;
   max-width: 960px;
-  margin: 6rem auto;
+  margin: 10rem auto 6rem;
 
   @media (min-width: ${breakpoints.m}px) {
     margin: 10rem auto 6rem;
@@ -84,7 +84,7 @@ const ProductContainer = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 6rem 4rem;
+  margin: 4rem 1.5rem;
   text-decoration: none;
   color: #1a1a1a;
 
@@ -99,6 +99,8 @@ const ProductContainer = styled(Link)`
   }
 
   & + & {
+    margin-top: 4rem;
+
     @media (min-width: ${breakpoints.m}px) {
       flex-direction: row-reverse;
       background: #ffebeb;
@@ -131,6 +133,7 @@ const ProductImage = styled(Img)`
 
 const Title = styled.span`
   margin-top: 1.5rem;
+  margin-bottom: .25rem;
   font-weight: 300;
   font-size: 1.25rem;
   text-align: center;
@@ -143,7 +146,7 @@ const Title = styled.span`
 `
 
 const Subtitle = styled.span`
-  margin-top: .25rem;
+  margin-top: .5rem;
   font-weight: 300;
   font-size: 1.15rem;
 

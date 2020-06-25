@@ -82,6 +82,21 @@ const CartCounter = styled.span`
   }
 `
 
+const Banner = styled.div`
+  text-align: center;
+  background-color: #dcaea4;
+  color: white;
+  padding: .75rem 0;
+  font-size: .75rem;
+  letter-spacing: .05em;
+  font-weight: 800;
+  text-transform: uppercase;
+
+  span {
+    font-size: 1.15rem;
+  }
+`
+
 const useQuantity = () => {
 	const { store: {checkout} } = useContext(StoreContext)
 	const items = checkout ? checkout.lineItems : []
@@ -108,6 +123,9 @@ const Navigation = ({ siteTitle, location }) => {
 					<CartIcon />
 				</CartLink>
 			</Container>
+      <Banner>
+        <span>✨</span> Gratis Frakt - leverans inom 2-4 dagar <span>✨</span>
+      </Banner>
 		</Wrapper>
 	)
 }
