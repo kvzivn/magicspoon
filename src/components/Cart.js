@@ -37,7 +37,7 @@ const Cart = () => {
 
 const Wrapper = styled.div`
   position: relative;
-  margin: 5rem auto 0;
+  margin: 10rem auto 0;
   padding-bottom: 10rem;
 
   @media (min-width: ${breakpoints.m}px) {
