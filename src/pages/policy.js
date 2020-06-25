@@ -3,7 +3,7 @@ import { Container } from '~/utils/styles'
 import styled from '@emotion/styled'
 
 const Wrapper = styled.div`
-  margin: 2rem auto 6rem;
+  margin: 6rem auto 2rem;
   padding: 4rem;
 
   h1 {
@@ -17,7 +17,7 @@ const Policy = () => (
     <Wrapper>
       <h1>Integritetspolicy, fraktinformation och returer</h1>
 
-      <h4>Personuppgifter vi samlar in</h4>
+      <h4>Personuppgifter</h4>
       <p>När du besöker webbplatsen samlar vi automatiskt in viss information om din enhet, inklusive information om din webbläsare, IP-adress, tidszon och några av de cookies som är installerade på din enhet. När du surfar på webbplatsen samlar vi dessutom in information om de enskilda webbsidor eller produkter som du visar, vilka webbplatser eller söktermer som hänvisas till webbplatsen och information om hur du interagerar med webbplatsen. Vi hänvisar till denna automatiskt insamlade information som "enhetsinformation".
       <br /><br />
       Vi samlar in enhets information med hjälp av följande tekniker:
