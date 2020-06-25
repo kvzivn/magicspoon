@@ -4,7 +4,6 @@ import { css } from '@emotion/core'
 import Klarna from '../images/icon_klarna.svg'
 import Maestro from '../images/icon_maestro.svg'
 import MasterCard from '../images/icon_mastercard.svg'
-import PayPal from '../images/icon_paypal.svg'
 import Visa from '../images/icon_visa.svg'
 
 const PaymentIcons = () => (

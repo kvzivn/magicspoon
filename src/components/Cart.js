@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import StoreContext from '~/context/StoreContext'
-import Sparkles from './Sparkles'
 import Button from './Button'
 import LineItem from './LineItem'
 import PaymentIcons from './PaymentIcons'
@@ -17,8 +16,6 @@ const Cart = () => {
   const line_items = checkout.lineItems.map(line_item => {
     return <LineItem key={line_item.id.toString()} line_item={line_item} />
   })
-
-  console.log(checkout)
 
   return (
     <Wrapper>

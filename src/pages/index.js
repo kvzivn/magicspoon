@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import SEO from '~/components/seo'
-import BgImage from '~/components/BgImage'
 import ProductGrid from '~/components/ProductGrid'
 import PaymentIcons from '~/components/PaymentIcons'
 import styled from '@emotion/styled'

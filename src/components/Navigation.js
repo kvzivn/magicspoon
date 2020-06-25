@@ -44,6 +44,7 @@ const LogoLink = styled(Link)`
 const CartLink = styled(Link)`
   position: absolute;
   top: 50%;
+  padding: .25rem .5rem;
   right: 2rem;
   transform: translateY(-50%);
   color: currentColor;
@@ -68,8 +69,8 @@ const CartIcon = styled(IconCart)`
 
 const CartCounter = styled.span`
   position: absolute;
-  top: -6px;
-  right: -15px;
+  top: -2px;
+  right: -8px;
   padding: 0 6px;
   font-size: .75rem;
   font-weight: bold;
@@ -128,7 +129,9 @@ const Navigation = ({ siteTitle, location }) => {
 				</CartLink>
 			</Container>
       <Banner>
-        <span>✨</span> Gratis Frakt - leverans inom 2-4 dagar <span>✨</span>
+        <span role="img" aria-label="sparkles">✨ </span>
+          Gratis Frakt - leverans inom 2-4 dagar
+        <span role="img" aria-label="sparkles"> ✨</span>
       </Banner>
 		</Wrapper>
 	)

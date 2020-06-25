@@ -3,7 +3,6 @@ import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import SEO from '~/components/seo'
-import Sparkles from '~/components/Sparkles'
 import ProductForm from '~/components/ProductForm'
 import { Container, breakpoints } from '../utils/styles'
 
