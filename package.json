@@ -35,7 +35,7 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^6.0.0",
-    "set-value": "^2.0.1",
+    "set-value": "^4.0.1",
     "shopify-buy": "^2.8.0"
   },
   "keywords": [
